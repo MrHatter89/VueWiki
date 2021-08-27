@@ -2,13 +2,14 @@
   <div class="wiki">
     <h2>Проксирование через Nginx</h2>
     <p>
-            Для проксирования можно воспользоваться следующим конфигом nginx
-          </p>
-          <p>
-            Подходит если у вас нет SSL сертификата или его предоставляет вам
-            CloudFlare
-          </p>
-          <pcode code='
+      Для проксирования можно воспользоваться следующим конфигом nginx
+    </p>
+    <p>
+      Подходит если у вас нет SSL сертификата или его предоставляет вам
+      CloudFlare
+    </p>
+    <pcode
+      code="
 server {
         listen 80;
         server_name projectname.ru;
@@ -28,12 +29,13 @@ server {
                 proxy_set_header X-Real-IP $remote_addr;
         }
 }
-'/>
-          <p>
-            Подходит если у вас есть SSL сертификат(в том числе от Let's
-            Encrypt)
-          </p>
-          <pcode code='
+"
+    />
+    <p>
+      Подходит если у вас есть SSL сертификат(в том числе от Let's Encrypt)
+    </p>
+    <pcode
+      code="
     server {
         listen 80;
         listen 443 ssl;
@@ -56,13 +58,14 @@ server {
                 proxy_set_header X-Real-IP $remote_addr;
         }
 }
-'/>
+"
+    />
   </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
+import coremethods from "@/components/core-methods.js";
 export default {
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>

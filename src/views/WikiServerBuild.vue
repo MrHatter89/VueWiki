@@ -11,21 +11,51 @@
     <p>Непротестированы: Atom и другие</p>
     <h2>Особенности сборки некоторых ядер</h2>
     <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
-    <sploiler link="authlib2"><template #header>Сборка AuthLib 2 для 1.16.4+ <gtag type="important">Важно</gtag></template>
+    <sploiler link="authlib2"
+      ><template #header
+        >Сборка AuthLib 2 для 1.16.4+
+        <gtag type="important">Важно</gtag></template
+      >
       <p>
-        Для работы online-mode на 1.16.4 и выше вам понадобится специальные authlib-clean и LauncherAuthlib<br>
-authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar">официальный authlib</a>, откуда вы должны будете удалить все те классы что есть в LauncherAuthlib.<br>
-Ссылка на новый LauncherAuthlib - <codes v-if="version < 50200"><a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">LauncherAuthlib 2</a></codes> <codes v-if="version >= 50200"><a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar">LauncherAuthlib 2</a></codes> (только 1.16.4+)<br>
-При настройке сервера, удалите из jar файла ServerWrapper старый authlib (com/mojang/authlib) и последовательно закиньте: сначало всё содержимое authlib-clean, а после и всё содержимое LauncherAuthlib
+        Для работы online-mode на 1.16.4 и выше вам понадобится специальные
+        authlib-clean и LauncherAuthlib<br />
+        authlib-clean это
+        <a
+          href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar"
+          >официальный authlib</a
+        >, откуда вы должны будете удалить все те классы что есть в
+        LauncherAuthlib.<br />
+        Ссылка на новый LauncherAuthlib -
+        <codes v-if="version < 50200"
+          ><a
+            href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar"
+            >LauncherAuthlib 2</a
+          ></codes
+        >
+        <codes v-if="version >= 50200"
+          ><a
+            href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar"
+            >LauncherAuthlib 2</a
+          ></codes
+        >
+        (только 1.16.4+)<br />
+        При настройке сервера, удалите из jar файла ServerWrapper старый authlib
+        (com/mojang/authlib) и последовательно закиньте: сначало всё содержимое
+        authlib-clean, а после и всё содержимое LauncherAuthlib
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Forge 1.16.4+</template>
+    <sploiler
+      ><template #header>Сборка Forge 1.16.4+</template>
       <p>
-      Сборка для этой версии аналогична сборке для 1.16.4+, однако нужно выполнить дополнительные действия.<br>
-      Необходимо найти jar файл по пути "libraries/net/minecraft/server/ВЕРСИЯ-ЦИФРЫ/server-ВЕРСИЯ-ЦИФРЫ-extra.jar", и удалить из него "com/mojang/authlib"
+        Сборка для этой версии аналогична сборке для 1.16.4+, однако нужно
+        выполнить дополнительные действия.<br />
+        Необходимо найти jar файл по пути
+        "libraries/net/minecraft/server/ВЕРСИЯ-ЦИФРЫ/server-ВЕРСИЯ-ЦИФРЫ-extra.jar",
+        и удалить из него "com/mojang/authlib"
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Forge/Sponge 1.12.2</template>
+    <sploiler
+      ><template #header>Сборка Forge/Sponge 1.12.2</template>
       <p>
         Замените launchwrapper на
         <a
@@ -35,7 +65,8 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
         находится по тому же пути и с тем же именем что и стандартный
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Fabric 1.13+</template>
+    <sploiler
+      ><template #header>Сборка Fabric 1.13+</template>
       <p>
         Перед запуском ядра удалите authlib из стандартного minecraft.jar(а если
         запустили - очистите кеш фабрика в папке .fabric)
@@ -45,24 +76,45 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
         ServerWrapper.jar
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Mohist 1.13+</template>
+    <sploiler
+      ><template #header>Сборка Mohist 1.13+</template>
       <p>
-        Для запуска Mohist необходимо использовать Java 11. При этом укажите <codes v-if="version < 50200">-javaagent:НАЗВАНИЕ_ФАЙЛА_ЯДРА.jar</codes> <codes v-if="version >= 50200">-javaagent:ServerWrapper.jar -Dserverwrapper.agentproxy=com.mohistmc.util.JarLoader</codes> в start.sh/start.bat
+        Для запуска Mohist необходимо использовать Java 11. При этом укажите
+        <codes v-if="version < 50200">-javaagent:НАЗВАНИЕ_ФАЙЛА_ЯДРА.jar</codes>
+        <codes v-if="version >= 50200"
+          >-javaagent:ServerWrapper.jar
+          -Dserverwrapper.agentproxy=com.mohistmc.util.JarLoader</codes
+        >
+        в start.sh/start.bat
       </p>
       <p>
         После этого докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Spigot/Paper</template>
+    <sploiler
+      ><template #header>Сборка Spigot/Paper</template>
       <p>
         Докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar, удалив перед этим стандартную authlib из
         minecraft.jar
       </p>
-      <p><i>Если возникает ошибка NoSuchMethodError при установке Paper 1.16.3 и ниже <a href="https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib.jar">скачайте</a> и замените в ServerWrapper.jar authlib версии 1</i></p>
+      <p>
+        <i
+          >Если возникает ошибка NoSuchMethodError при установке Paper 1.16.3 и
+          ниже
+          <a
+            href="https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib.jar"
+            >скачайте</a
+          >
+          и замените в ServerWrapper.jar authlib версии 1</i
+        >
+      </p>
     </sploiler>
-    <sploiler><template #header>Сборка устаревших версий Waterfall/BungeeCord</template>
+    <sploiler
+      ><template #header
+        >Сборка устаревших версий Waterfall/BungeeCord</template
+      >
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
         <a
@@ -73,7 +125,8 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
         (3 файла, начинающиеся с bungee)
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка актуальной версии Waterfall</template>
+    <sploiler
+      ><template #header>Сборка актуальной версии Waterfall</template>
       <p>
         Вам необходимо пропатчить исходники при сборке новым патчем
         <a
@@ -90,9 +143,12 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
       В 5.0.0 введен новый способ установки ServerWrapper'а - с помощью скрипта
       установки. Для его запуска выполните:
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code="
     java -jar ServerWrapper.jar setup
-'/>
+"
+    />
     <p>И следуйте инструкции по установке</p>
     <h2>Основы привязки лаунчера к серверу</h2>
     <p>
@@ -113,26 +169,32 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
     </p>
     <p v-if="version >= 50109">
       <b>ServerName</b> - имя профиля сервера, его можно посмотреть открыв в
-      лаунчсервере папку profiles, открыв файл своего профиля и в секции servers посмотрев на
-      поле name. serverName в конфигурации ServerWrapper и name в профиле должны совпадать для работы
-      интеграционных плагинов к серверу
+      лаунчсервере папку profiles, открыв файл своего профиля и в секции servers
+      посмотрев на поле name. serverName в конфигурации ServerWrapper и name в
+      профиле должны совпадать для работы интеграционных плагинов к серверу
     </p>
     <p>
       <b>Аккаунт сервера</b> - полноценный аккаунт с логином и паролем, который
       будет использоватья для авторизации сервера
     </p>
     <h3>Указание Main-Class в строке запуска</h3>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code="
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper {ваш MainClass}
-'/>
+"
+    />
     <h3>Указание Main-Class в конфигурации</h3>
     <p>
       Можно указать Main-Class в ServerWrapperConfig.json , тогда строка запуска
       будет выглядеть так:
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code="
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper
-'/>
+"
+    />
     <h2>Конфигурация ServerWrapperConfig.json</h2>
     <p>
       Необходимо скопировать public.key из директории лаунчсервера в директорию
@@ -146,7 +208,9 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
       Для 5.0.10 и ниже аккаунт сервера обязан обладать правом canServer, см
       ниже как прописать права
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
 {
   "title": "Action1.12", //Заголовок профиля, к которому привязывается сервер
   "projectname": "MineCraft", //Название вашего проекта
@@ -169,13 +233,14 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
   },
   "env": "STD" //Окружение
 }
-'/>
+'
+    />
   </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
+import coremethods from "@/components/core-methods.js";
 export default {
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>

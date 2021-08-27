@@ -1,53 +1,96 @@
 <template>
-    <div class="wiki">
-        <h2>Настройка AuthCoreProvider</h2>
-        <b-alert
-          variant="danger"
-          :show="version < 50200"
-          >Доступно только с <b>5.2.0</b></b-alert>
-        <p><b>AuthCoreProvider</b> является заменой тройке <codes>AuthProvider</codes>, <codes>AuthHandler</codes>, <codes>HWIDHandler</codes>, выполняя все их функции в едином, связанном интерфейсе</p>
-        <p>Преимущества AuthCoreProvider:</p>
-        <ul>
-            <li>Возможность использовать OAuth</li>
-            <li>Отсутствует дублирование подключения к БД</li>
-            <li>Единый интерфейс проверки пароля</li>
-            <li>Возможность модулям реализовывать поддержку дополнительных функций и получать дополнительные поля</li>
-            <li>Возможность модулям реализовывать авторизацию/регистрацию через соц.сети</li>
-            <li>Множество комманд для управления</li>
-        </ul>
-        <p>Для использования команд AuthCoreProvider используйте <codes>config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ</codes>. Список команд вы можете посмотреть нажав на TAB</p>
-        <h3>Конфигурация PasswordVerifier</h3>
-        <p>Эта часть является общей для всех способов авторизации</p>
-        <p><codes>digest</codes> - хеширует пароль выбранным алгоритмом. Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle</p>
-        <pcode autodetect code='
+  <div class="wiki">
+    <h2>Настройка AuthCoreProvider</h2>
+    <b-alert variant="danger" :show="version < 50200"
+      >Доступно только с <b>5.2.0</b></b-alert
+    >
+    <p>
+      <b>AuthCoreProvider</b> является заменой тройке
+      <codes>AuthProvider</codes>, <codes>AuthHandler</codes>,
+      <codes>HWIDHandler</codes>, выполняя все их функции в едином, связанном
+      интерфейсе
+    </p>
+    <p>Преимущества AuthCoreProvider:</p>
+    <ul>
+      <li>Возможность использовать OAuth</li>
+      <li>Отсутствует дублирование подключения к БД</li>
+      <li>Единый интерфейс проверки пароля</li>
+      <li>
+        Возможность модулям реализовывать поддержку дополнительных функций и
+        получать дополнительные поля
+      </li>
+      <li>
+        Возможность модулям реализовывать авторизацию/регистрацию через соц.сети
+      </li>
+      <li>Множество комманд для управления</li>
+    </ul>
+    <p>
+      Для использования команд AuthCoreProvider используйте
+      <codes>config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ</codes>. Список команд
+      вы можете посмотреть нажав на TAB
+    </p>
+    <h3>Конфигурация PasswordVerifier</h3>
+    <p>Эта часть является общей для всех способов авторизации</p>
+    <p>
+      <codes>digest</codes> - хеширует пароль выбранным алгоритмом.
+      Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle
+    </p>
+    <pcode
+      autodetect
+      code='
     "passwordVerifier": {
       "algo": "SHA256",
       "type": "digest"
     }
-    '/>
-        <p><codes>doubleDigest</codes> - хеширует пароль выбранным алгоритмом дважды. <codes>toHexMode</codes> перед вторым раундом хеширования переведет хеш в HEX формат. Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle</p>
-        <pcode autodetect code='
+    '
+    />
+    <p>
+      <codes>doubleDigest</codes> - хеширует пароль выбранным алгоритмом дважды.
+      <codes>toHexMode</codes> перед вторым раундом хеширования переведет хеш в
+      HEX формат. Поддерживаются любые алгоритмы, реализованные в Java или
+      BouncyCastle
+    </p>
+    <pcode
+      autodetect
+      code='
     "passwordVerifier": {
       "algo": "SHA256",
       "toHexMode": true,
       "type": "doubleDigest"
     }
-    '/>
-        <p><codes>bcrypt</codes>(Модуль <codes>AddionalHash</codes>) - проверяет пароль по алгоритму BCrypt(password_verify в PHP)</p>
-        <pcode autodetect code='
+    '
+    />
+    <p>
+      <codes>bcrypt</codes>(Модуль <codes>AddionalHash</codes>) - проверяет
+      пароль по алгоритму BCrypt(password_verify в PHP)
+    </p>
+    <pcode
+      autodetect
+      code='
     "passwordVerifier": {
       "type": "bcrypt"
     }
-    '/>
-        <p><codes>phpass</codes>(Модуль <codes>AddionalHash</codes>) - проверяет пароль по алгоритму phpass(WordPress)</p>
-        <pcode autodetect code='
+    '
+    />
+    <p>
+      <codes>phpass</codes>(Модуль <codes>AddionalHash</codes>) - проверяет
+      пароль по алгоритму phpass(WordPress)
+    </p>
+    <pcode
+      autodetect
+      code='
     "passwordVerifier": {
       "type": "phpass"
     }
-    '/>
-        <h3>Способ MySQL <gtag type="info">Рекомендуется</gtag></h3>
-        <p>Выполните следующие SQL запросы для создания таблицы с HWID и необходимых полей:</p>
-            <pcode code='
+    '
+    />
+    <h3>Способ MySQL <gtag type="info">Рекомендуется</gtag></h3>
+    <p>
+      Выполните следующие SQL запросы для создания таблицы с HWID и необходимых
+      полей:
+    </p>
+    <pcode
+      code='
     -- Добавляет недостающие поля в таблицу
     ALTER TABLE users
     ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
@@ -80,8 +123,8 @@
   `logicalProcessors` int(11) DEFAULT NULL,
   `physicalProcessors` int(11) DEFAULT NULL,
   `processorMaxFreq` bigint(11) DEFAULT NULL,
-  `battery` tinyint(1) NOT NULL DEFAULT &quot;0&quot;,
-  `banned` tinyint(1) NOT NULL DEFAULT &quot;0&quot;
+  `battery` tinyint(1) NOT NULL DEFAULT "0",
+  `banned` tinyint(1) NOT NULL DEFAULT "0"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE `hwids`
   ADD PRIMARY KEY (`id`),
@@ -90,9 +133,12 @@ ALTER TABLE `hwids`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users`
   ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`)
-    '/>
+    '
+    />
     <p>Настройте конфигурацию</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "std": {
       "core": {
         "type": "mysql",
@@ -121,20 +167,34 @@ ALTER TABLE `users`
       "isDefault": true,
       "displayName": "Default"
     }
-    '/>
-    <p>Для работы HWID включите опцию <codes>enableHardwareFeature</codes> в protectHandler</p>
+    '
+    />
+    <p>
+      Для работы HWID включите опцию <codes>enableHardwareFeature</codes> в
+      protectHandler
+    </p>
     <h2>Метод json</h2>
-    <p>Следуйте инструкции к вашему скрипту или обратитесь к <router-link to="/developers/oauth">этой</router-link> инструкции для создания собственного скрипта</p>
+    <p>
+      Следуйте инструкции к вашему скрипту или обратитесь к
+      <router-link to="/developers/oauth">этой</router-link> инструкции для
+      создания собственного скрипта
+    </p>
     <h2>Метод fileauthsystem</h2>
-    <p>Установите модуль <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module">FileAuthSystem</a></p>
-    </div>
+    <p>
+      Установите модуль
+      <a
+        href="https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module"
+        >FileAuthSystem</a
+      >
+    </p>
+  </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
-import codes from '../components/codes.vue'
+import coremethods from "@/components/core-methods.js";
+import codes from "../components/codes.vue";
 export default {
   components: { codes },
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>

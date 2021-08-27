@@ -2,71 +2,82 @@
   <div class="wiki">
     <h2>Настройка ProtectHandler</h2>
     <p>
-            ProtectHandler часть находится в состоянии активной разработки. В
-            дальнейшем будут появлятся всё новые и новые возможности
-          </p>
-          <h3>Способ none</h3>
-          <p>Полностью отсутствует защита</p>
-          <pcode autodetect code='
+      ProtectHandler часть находится в состоянии активной разработки. В
+      дальнейшем будут появлятся всё новые и новые возможности
+    </p>
+    <h3>Способ none</h3>
+    <p>Полностью отсутствует защита</p>
+    <pcode
+      autodetect
+      code='
 "protectHandler": {
     "type": "none"
 }
-'/>
-          <div v-if="version > 50104">
-            <h3>Способ std</h3>
-            <p>Стандартный protectHandler</p>
-            <ul>
-              <li>
-                Токен авторизации можно получить только если authType CLIENT и
-                пройдена проверка хеша лаунчера
-              </li>
-              <li>
-                Получить и сменить профиль можно только если пройдена проверка
-                на белый список
-              </li>
-              <li>
-                Получить можно только такие папки updates: assets выбранного
-                клиента, папка выбранного клиента, все папки из allowUpdates
-              </li>
-            </ul>
-            <pcode autodetect code='
+'
+    />
+    <div v-if="version > 50104">
+      <h3>Способ std</h3>
+      <p>Стандартный protectHandler</p>
+      <ul>
+        <li>
+          Токен авторизации можно получить только если authType CLIENT и
+          пройдена проверка хеша лаунчера
+        </li>
+        <li>
+          Получить и сменить профиль можно только если пройдена проверка на
+          белый список
+        </li>
+        <li>
+          Получить можно только такие папки updates: assets выбранного клиента,
+          папка выбранного клиента, все папки из allowUpdates
+        </li>
+      </ul>
+      <pcode
+        autodetect
+        code='
 "protectHandler": {
     "profileWhitelist": { "Ваш UUID профиля": ["Ник1", "Ник2"] }, //Использование вайтлиста
     "allowUpdates": [],
     "type": "std"
   }
-'/>
-          </div>
-          <div v-if="version >= 50107">
-            <h3>Способ advanced</h3>
-            <p>Включает в себя все функции std а так же:</p>
-            <ul>
-              <li>Включает механизмы TrustLevel и обмен ключами с клиентом</li>
-              <li>Включает обработку SecurityReport от нативных защит</li>
-              <li>Можно включить обработку HardwareInfo и баны по железу</li>
-            </ul>
-            <p>Стандартная конфигурация без hardwareFeature</p>
-            <pcode autodetect code='
+'
+      />
+    </div>
+    <div v-if="version >= 50107">
+      <h3>Способ advanced</h3>
+      <p>Включает в себя все функции std а так же:</p>
+      <ul>
+        <li>Включает механизмы TrustLevel и обмен ключами с клиентом</li>
+        <li>Включает обработку SecurityReport от нативных защит</li>
+        <li>Можно включить обработку HardwareInfo и баны по железу</li>
+      </ul>
+      <p>Стандартная конфигурация без hardwareFeature</p>
+      <pcode
+        autodetect
+        code='
 "protectHandler": {
     "profileWhitelist": { "Ваш UUID профиля": ["Ник1", "Ник2"] }, //Использование вайтлиста
     "allowUpdates": [],
     "type": "advanced"
   }
-'/>
-          </div>
-          <div v-if="version >= 50107">
-            <h3>Настройка HWIDProvider</h3>
-            <b-alert
-              variant="danger"
-              :show="version >= 50200"
-              >Начиная с <b>5.2.0</b> эту функцию выполняет <router-link to="/auth">AuthCoreProvider</router-link></b-alert>
-            <p>
-              HWIDProvider является частью advanced protectHandler и позволяет
-              выдавать баны по железу, собирать статистику железа пользователя и
-              отслеживать мультиакки. Конфигурации:
-            </p>
-            <h4>Способ memory</h4>
-            <pcode autodetect code='
+'
+      />
+    </div>
+    <div v-if="version >= 50107">
+      <h3>Настройка HWIDProvider</h3>
+      <b-alert variant="danger" :show="version >= 50200"
+        >Начиная с <b>5.2.0</b> эту функцию выполняет
+        <router-link to="/auth">AuthCoreProvider</router-link></b-alert
+      >
+      <p>
+        HWIDProvider является частью advanced protectHandler и позволяет
+        выдавать баны по железу, собирать статистику железа пользователя и
+        отслеживать мультиакки. Конфигурации:
+      </p>
+      <h4>Способ memory</h4>
+      <pcode
+        autodetect
+        code='
 "protectHandler": {
     "profileWhitelist": {},
     "allowUpdates": [],
@@ -78,16 +89,19 @@
     },
     "type": "advanced"
   }
-'/>
-            <p>
-              Используя этот способ вы можете посмотреть собарнные HIWD командой
-              <span class="codes">config protecthandler hardwarelist</span>.
-              Забанить HWID -
-              <span class="codes">config protecthandler hardwareban [ID]</span>,
-              где ID вы берете из вывода первой команды
-            </p>
-            <h4>Способ mysql</h4>
-            <pcode autodetect code='
+'
+      />
+      <p>
+        Используя этот способ вы можете посмотреть собарнные HIWD командой
+        <span class="codes">config protecthandler hardwarelist</span>. Забанить
+        HWID -
+        <span class="codes">config protecthandler hardwareban [ID]</span>, где
+        ID вы берете из вывода первой команды
+      </p>
+      <h4>Способ mysql</h4>
+      <pcode
+        autodetect
+        code='
 "protectHandler": {
     "profileWhitelist": {},
     "allowUpdates": [],
@@ -107,15 +121,18 @@
     },
     "type": "advanced"
   }
-'/>
-            <p>
-              Выполните следующие SQL запросы что бы создать таблицы для работы
-              mysql hwid provider
-            </p>
-            <p v-if="version >= 50200">
-              Начиная с 5.2.0 в HWID входит информация о видеокарте
-            </p>
-            <pcode v-if="version < 50200" code='
+'
+      />
+      <p>
+        Выполните следующие SQL запросы что бы создать таблицы для работы mysql
+        hwid provider
+      </p>
+      <p v-if="version >= 50200">
+        Начиная с 5.2.0 в HWID входит информация о видеокарте
+      </p>
+      <pcode
+        v-if="version < 50200"
+        code='
 CREATE TABLE `hwidLog` (
   `id` bigint(20) NOT NULL,
   `hwidId` bigint(20) NOT NULL,
@@ -132,8 +149,8 @@ CREATE TABLE `hwids` (
   `logicalProcessors` int(11) DEFAULT NULL,
   `physicalProcessors` int(11) DEFAULT NULL,
   `processorMaxFreq` bigint(11) DEFAULT NULL,
-  `battery` tinyint(1) NOT NULL DEFAULT &quot;0&quot;,
-  `banned` tinyint(1) NOT NULL DEFAULT &quot;0&quot;
+  `battery` tinyint(1) NOT NULL DEFAULT "0",
+  `banned` tinyint(1) NOT NULL DEFAULT "0"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE `hwidLog`
   ADD PRIMARY KEY (`id`),
@@ -147,8 +164,12 @@ ALTER TABLE `hwids`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `hwidLog`
   ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
-'/>
-            <pcode v-if="version >= 50200" autodetect code='
+'
+      />
+      <pcode
+        v-if="version >= 50200"
+        autodetect
+        code='
 CREATE TABLE `hwidLog` (
   `id` bigint(20) NOT NULL,
   `hwidId` bigint(20) NOT NULL,
@@ -166,8 +187,8 @@ CREATE TABLE `hwids` (
   `logicalProcessors` int(11) DEFAULT NULL,
   `physicalProcessors` int(11) DEFAULT NULL,
   `processorMaxFreq` bigint(11) DEFAULT NULL,
-  `battery` tinyint(1) NOT NULL DEFAULT &quot;0&quot;,
-  `banned` tinyint(1) NOT NULL DEFAULT &quot;0&quot;
+  `battery` tinyint(1) NOT NULL DEFAULT "0",
+  `banned` tinyint(1) NOT NULL DEFAULT "0"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE `hwidLog`
   ADD PRIMARY KEY (`id`),
@@ -181,14 +202,15 @@ ALTER TABLE `hwids`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `hwidLog`
   ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
-'/>
-          </div>
+'
+      />
+    </div>
   </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
+import coremethods from "@/components/core-methods.js";
 export default {
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>

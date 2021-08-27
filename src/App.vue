@@ -11,19 +11,35 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown :text="version" right>
-              <b-dropdown-item @click="setVersion(5,2,0, 'stable')">v5.2.0-stable</b-dropdown-item>
-              <b-dropdown-item @click="setVersion(5,1,10, 'stable')">v5.1.10-stable</b-dropdown-item>
-              <b-dropdown-item @click="setVersion(5,1,7, 'stable')">v5.1.7-stable</b-dropdown-item>
+              <b-dropdown-item @click="setVersion(5, 2, 0, 'stable')"
+                >v5.2.0-stable</b-dropdown-item
+              >
+              <b-dropdown-item @click="setVersion(5, 1, 10, 'stable')"
+                >v5.1.10-stable</b-dropdown-item
+              >
+              <b-dropdown-item @click="setVersion(5, 1, 7, 'stable')"
+                >v5.1.7-stable</b-dropdown-item
+              >
             </b-nav-item-dropdown>
             <b-nav-item-dropdown :text="osName" right>
-              <b-dropdown-item @click="setOperationSystem('Linux', 'Debian')">Debian</b-dropdown-item>
-              <b-dropdown-item @click="setOperationSystem('Linux', 'CentOS')">CentOS</b-dropdown-item>
-              <b-dropdown-item @click="setOperationSystem('Linux', 'ArchLinux')">ArchLinux</b-dropdown-item>
-              <b-dropdown-item @click="setOperationSystem('Windows', 'Windows')">Windows</b-dropdown-item>
+              <b-dropdown-item @click="setOperationSystem('Linux', 'Debian')"
+                >Debian</b-dropdown-item
+              >
+              <b-dropdown-item @click="setOperationSystem('Linux', 'CentOS')"
+                >CentOS</b-dropdown-item
+              >
+              <b-dropdown-item @click="setOperationSystem('Linux', 'ArchLinux')"
+                >ArchLinux</b-dropdown-item
+              >
+              <b-dropdown-item @click="setOperationSystem('Windows', 'Windows')"
+                >Windows</b-dropdown-item
+              >
             </b-nav-item-dropdown>
             <b-nav-item-dropdown text="Разделы" right>
               <b-dropdown-item to="/">Главная</b-dropdown-item>
-              <b-dropdown-item to="/auth">Настройка авторизации</b-dropdown-item>
+              <b-dropdown-item to="/auth"
+                >Настройка авторизации</b-dropdown-item
+              >
               <b-dropdown-item to="/authprovider">AuthProvider</b-dropdown-item>
               <b-dropdown-item to="/authhandler">AuthHandler</b-dropdown-item>
               <b-dropdown-item to="/protection">Защита</b-dropdown-item>
@@ -41,9 +57,7 @@
               <b-dropdown-item to="/developers/websocketapi"
                 >WebSocket API</b-dropdown-item
               >
-              <b-dropdown-item to="/developers/oauth"
-                >OAuth</b-dropdown-item
-              >
+              <b-dropdown-item to="/developers/oauth">OAuth</b-dropdown-item>
               <b-dropdown-item to="/runtimeapi"
                 >Редактирование runtime</b-dropdown-item
               >
@@ -60,22 +74,31 @@
 <script>
 export default {
   computed: {
-    version: function () {
-      return 'v' + this.$store.state.major + '.' + this.$store.state.minor + '.' + this.$store.state.patch + '-' + this.$store.state.state
+    version: function() {
+      return (
+        "v" +
+        this.$store.state.major +
+        "." +
+        this.$store.state.minor +
+        "." +
+        this.$store.state.patch +
+        "-" +
+        this.$store.state.state
+      );
     },
-    osName: function () {
-      return this.$store.state.osType
+    osName: function() {
+      return this.$store.state.osType;
     }
   },
   methods: {
-    setVersion: function (major, minor, patch, state) {
-      this.$store.commit('setVersion', { major, minor, patch, state })
+    setVersion: function(major, minor, patch, state) {
+      this.$store.commit("setVersion", { major, minor, patch, state });
     },
-    setOperationSystem: function (osClass, osType) {
-      this.$store.commit('setOperatingSystem', { osClass, osType })
+    setOperationSystem: function(osClass, osType) {
+      this.$store.commit("setOperatingSystem", { osClass, osType });
     }
   }
-}
+};
 </script>
 <style>
 #app {

@@ -1,16 +1,18 @@
 <template>
   <div class="wiki">
     <h2>Настройка AuthProvider</h2>
-    <b-alert
-        variant="danger"
-        :show="version >= 50200"
-        >Начиная с <b>5.2.0</b> AuthProvider/AuthHandler являются устаревшими</b-alert>
+    <b-alert variant="danger" :show="version >= 50200"
+      >Начиная с <b>5.2.0</b> AuthProvider/AuthHandler являются
+      устаревшими</b-alert
+    >
     <h3>
       Способ accept
       <gtag type="easy">Только для ознакомления</gtag>
     </h3>
     <p>Принимает любые пары логин-пароль</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -18,13 +20,16 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <h3>
       Способ reject
       <gtag type="easy">Это просто</gtag>
     </h3>
     <p>Отклоняет любые пары логин-пароль</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -33,7 +38,8 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <h3>
       Способ mysql
       <gtag type="easy">Это просто</gtag>
@@ -51,7 +57,9 @@
         умолчанию 0)</b
       >
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -72,7 +80,8 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <h3>
       Способ postgresql
       <gtag type="medium">Средний уровень</gtag>
@@ -91,7 +100,9 @@
         умолчанию 0)</b
       >
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -112,7 +123,8 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <h3>
       Способ request
       <gtag type="easy">Это просто</gtag>
@@ -125,7 +137,9 @@
       Ответ сервера должен выглядеть так: OK:Gravit:0, где Gravit - ваш никнейм,
       0 - маска permissions
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -137,7 +151,8 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <p v-if="version > 50109">
       Некоторые скрипты авторизации не поддерживают передачу permissions и их
       ответ выглядит как OK:Gravit, где Gravit - ваш никнейм<br />
@@ -146,8 +161,10 @@
         >рекомендуется найти/написать/подправить скрипт, что бы он передавал
         permissions</b
       >
-      <br/>
-    <pcode autodetect code='
+      <br />
+      <pcode
+        autodetect
+        code='
     "auth": [
       {
         "provider": {
@@ -159,7 +176,8 @@
         }
       }
     ]
-    '/>
+    '
+      />
     </p>
     <h3>
       Способ json
@@ -170,7 +188,9 @@
       HTTP/HTTPS, но в отличии от request делает POST запрос с json данными
       внутри
     </p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     "auth": [
       {
         "provider": {
@@ -180,29 +200,39 @@
         }
       }
     ]
-    '/>
+    '
+    />
     <p>Запрос:</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     {
       "username": "admin",
       "password": "password",
       "ip": "127.0.0.1",
       "apiKey": "none"
     }
-    '/>
+    '
+    />
     <p>Ответ:</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     {
       "username": "admin",
       "permissions": 0
     }
-    '/>
+    '
+    />
     <p>Ошибка:</p>
-    <pcode autodetect code='
+    <pcode
+      autodetect
+      code='
     {
       "error": "Неверный логин или пароль"
     }
-    '/>
+    '
+    />
     <h2>
       Permissions и Flags. Маска
       <gtag type="medium">Средний уровень</gtag>
@@ -223,7 +253,10 @@
       <li>С 2<sup>33</sup> по 2<sup>51</sup> - пользовательские permissions</li>
       <li>С 2<sup>52</sup> по 2<sup>63</sup> - зарезервировано</li>
     </ul>
-    <p>Флаги - способ сообщить особенности аккаунта пользователя, которые могут учитыватся модулями для своих целей</p>
+    <p>
+      Флаги - способ сообщить особенности аккаунта пользователя, которые могут
+      учитыватся модулями для своих целей
+    </p>
     <ul>
       <li>Ничего - 0</li>
       <li>SYSTEM - 2<sup>0</sup></li>
@@ -242,9 +275,9 @@
   </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
+import coremethods from "@/components/core-methods.js";
 export default {
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>

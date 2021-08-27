@@ -1,13 +1,13 @@
 <template>
-    <div :class="classgen"><slot></slot></div>
+  <div :class="classgen"><slot></slot></div>
 </template>
 <script>
 export default {
-  props: ['type'],
+  props: ["type"],
   computed: {
-    classgen: function () {
-      return 'gtag gtag-' + this.type
+    classgen: function() {
+      return "gtag gtag-" + this.type;
     }
   }
-}
+};
 </script>

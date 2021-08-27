@@ -6,62 +6,140 @@
       >
     </p>
     <b-alert variant="danger" show>
-      Наш <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a> где можно задавать вопросы по лаунчеру, а так же читать актуальные новости
+      Наш <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a> где
+      можно задавать вопросы по лаунчеру, а так же читать актуальные новости
     </b-alert>
     <h2>Начало работы <a name="start" href="#start">&#128279;</a></h2>
     <b
       >Ставьте только те модули, что вам действительно необходимы. Большинство
       модулей требует дополнительной конфигурации</b
     ><br />
-    Модули, заканчивающиеся на <codes>_module</codes> - для
-    лаунчсервера(папка <b>modules</b>), на <codes>_lmodule</codes> - для
-    лаунчера(папка <b>launcher-modules</b>), на
-    <codes>_swmodule</codes> для ServerWrapper'а<br />
+    Модули, заканчивающиеся на <codes>_module</codes> - для лаунчсервера(папка
+    <b>modules</b>), на <codes>_lmodule</codes> - для лаунчера(папка
+    <b>launcher-modules</b>), на <codes>_swmodule</codes> для ServerWrapper'а<br />
     <ol>
       <li>
-        <sploiler link="start"><template #header>Устанавливаем лаунчсервер </template>
+        <sploiler link="start"
+          ><template #header>Устанавливаем лаунчсервер </template>
           <h3 v-if="version >= 50109">Предварительная подготовка</h3>
-          <p  v-if="version >= 50109">
-             Для работы лаунчсервера необходимо установить Java 11, а для работы серверов на 1.12.2 и ниже - Java 8.<br>
-             Это значит на вашем ПК/VDS должно быть установлено 2 Java - 8 и 11 с установленным javafx
+          <p v-if="version >= 50109">
+            Для работы лаунчсервера необходимо установить Java 11, а для работы
+            серверов на 1.12.2 и ниже - Java 8.<br />
+            Это значит на вашем ПК/VDS должно быть установлено 2 Java - 8 и 11 с
+            установленным javafx
           </p>
           <h4 v-if="osc == 'Windows'">
-             Установка Java для Windows
+            Установка Java для Windows
           </h4>
           <ol v-if="osc == 'Windows'">
-            <li>Скачиваем сборку OpenJDK 11 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 11 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем</li>
-            <li>Если вы выбрали AdoptJDK или любую другую сборку без openjfx скачайте <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку <codes>C:\Program Files\Adopt или Java\ваш_jdk</codes></li>
-            <li>Скачиваем сборку JDK 8 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
+            <li>
+              Скачиваем сборку OpenJDK 11 от
+              <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 11 Windows
+              x64 Hotspot) или
+              <a href="https://libericajdk.ru/pages/liberica-jdk/"
+                >LibericaJDK</a
+              >
+              и устанавливаем
+            </li>
+            <li>
+              Если вы выбрали AdoptJDK или любую другую сборку без openjfx
+              скачайте
+              <a
+                href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-jmods.zip"
+                >jmods</a
+              >
+              и
+              <a
+                href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-sdk.zip"
+                >sdk</a
+              >
+              и скопируйте содержимое архивов <b>с заменой</b> в папку
+              <codes>C:\Program Files\Adopt или Java\ваш_jdk</codes>
+            </li>
+            <li>
+              Скачиваем сборку JDK 8 от
+              <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64
+              Hotspot),
+              <a href="https://libericajdk.ru/pages/liberica-jdk/"
+                >LibericaJDK</a
+              >, или
+              <a
+                href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html"
+                >Oracle</a
+              >
+              и устанавливаем
+            </li>
             <li>Всё!</li>
           </ol>
           <h4 v-if="osc == 'Linux'">
-             Установка Java для Linux
+            Установка Java для Linux
           </h4>
-          <p  v-if="osc == 'Linux'">Вы можете использовать любой другой способ установки Java и openjfx</p>
+          <p v-if="osc == 'Linux'">
+            Вы можете использовать любой другой способ установки Java и openjfx
+          </p>
           <ol v-if="os == 'Debian'">
             <li>Выполняем <codes>apt-get install openjdk-11-jdk</codes></li>
-            <li>Устанавливаем jmods командой <pcode language='sh' code='wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
+            <li>
+              Устанавливаем jmods командой
+              <pcode
+                language="sh"
+                code='wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
 unzip openjfx-11.0.2_linux-x64_bin-jmods.zip
 cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods
 rm -r javafx-jmods-11.0.2
-rm openjfx-11.0.2_linux-x64_bin-jmods.zip'/></li>
-            <li>Устанавливаем Java 8 командой <pcode language='sh' code='wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
+rm openjfx-11.0.2_linux-x64_bin-jmods.zip'
+              />
+            </li>
+            <li>
+              Устанавливаем Java 8 командой
+              <pcode
+                language="sh"
+                code='wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
 sudo add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
-sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
-            <li>Переключаем стандартную Java на Java 11: <codes>update-alternatives --config java</codes></li>
-            <li>Для запуска с Java 8 измените <codes>java</codes> в строке запуска на полный путь(такой как <codes>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</codes>)</li>
+sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'
+              />
+            </li>
+            <li>
+              Переключаем стандартную Java на Java 11:
+              <codes>update-alternatives --config java</codes>
+            </li>
+            <li>
+              Для запуска с Java 8 измените <codes>java</codes> в строке запуска
+              на полный путь(такой как
+              <codes>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</codes>)
+            </li>
           </ol>
           <ol v-if="os == 'ArchLinux'">
-            <li>Выполните <codes>pacman -Syu jdk8-openjdk java8-openjfx jdk11-openjdk java11-openjfx</codes></li>
-            <li>Выполните <codes>cp -r /usr/lib/jvm/java-11-openjfx/* java-11-openjdk</codes></li>
-            <li>Выполните <codes>cp -r /usr/lib/jvm/java-8-openjfx/* java-8-openjdk</codes></li>
+            <li>
+              Выполните
+              <codes
+                >pacman -Syu jdk8-openjdk java8-openjfx jdk11-openjdk
+                java11-openjfx</codes
+              >
+            </li>
+            <li>
+              Выполните
+              <codes
+                >cp -r /usr/lib/jvm/java-11-openjfx/* java-11-openjdk</codes
+              >
+            </li>
+            <li>
+              Выполните
+              <codes>cp -r /usr/lib/jvm/java-8-openjfx/* java-8-openjdk</codes>
+            </li>
           </ol>
           <h3>
             Вариант 1: Скрипт установки
             <gtag type="easy">Самый простой вариант</gtag>
             <gtag type="info">Рекомендуется</gtag>
           </h3>
-          <p v-if="osc == 'Windows'"><b>Предупреждение: Этот способ работает только в Linux или WSL. Не пытайтесь установить лаунчсервер таким способом в консоли Windows или Cygwin</b></p>
+          <p v-if="osc == 'Windows'">
+            <b
+              >Предупреждение: Этот способ работает только в Linux или WSL. Не
+              пытайтесь установить лаунчсервер таким способом в консоли Windows
+              или Cygwin</b
+            >
+          </p>
           <p>
             Для установки лаунчера версии 5.1.3+ можно воспользоваться скриптом.
             Доступные на данный момент скрипты находятся
@@ -89,16 +167,14 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
               >.
             </li>
             <li>
-              (ОПЦИОНАЛЬНО) Выполните <codes>cat setup.sh</codes> и
-              убедитесь, что скрипт скачан без ошибок.
+              (ОПЦИОНАЛЬНО) Выполните <codes>cat setup.sh</codes> и убедитесь,
+              что скрипт скачан без ошибок.
             </li>
             <li>
-              Выполните <codes>chmod +x setup.sh</codes> что бы
-              выдать права на выполнение
+              Выполните <codes>chmod +x setup.sh</codes> что бы выдать права на
+              выполнение
             </li>
-            <li>
-              И наконец запустите скрипт <codes>./setup.sh</codes>
-            </li>
+            <li>И наконец запустите скрипт <codes>./setup.sh</codes></li>
             <li>
               Если всё прошло успешно последним сообщением будет:
               <span class="codes"
@@ -195,11 +271,9 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
           </p>
           <p>
             <i>startscreen.sh</i> - Запуск лаунчсервера с использованием screen.
-            Рекомендуется для постоянной работы.
-            <codes>Ctrl + A + D</codes> - выйти из консоли
-            лаунчсервере не убивая процесс.
-            <codes>screen -x</codes> - подключится к консоли
-            лаунчсервера.<b
+            Рекомендуется для постоянной работы. <codes>Ctrl + A + D</codes> -
+            выйти из консоли лаунчсервере не убивая процесс.
+            <codes>screen -x</codes> - подключится к консоли лаунчсервера.<b
               >Следите за тем что бы не запустить случайно два лаунчсервера.
               Если вы запустите два лаунчсервера одновременно - вы можете
               получить странные баги на гране здравого смысла и долго искать
@@ -213,12 +287,14 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
           </h3>
           <p>
             Открываем по ссылке
-            <a v-if="this.$store.state.state != 'stable'"
+            <a
+              v-if="this.$store.state.state != 'stable'"
               class="link-animated"
               href="https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev"
               >GitHub Actions (DEV ветка)</a
             ><br />
-            <a v-if="this.$store.state.state == 'stable'"
+            <a
+              v-if="this.$store.state.state == 'stable'"
               class="link-animated"
               href="https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Amaster"
               >GitHub Actions (STABLE ветка)</a
@@ -267,8 +343,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
               >
             </li>
             <b
-              >Обязательно выполните
-              <codes>git submodule update --init</codes><br
+              >Обязательно выполните <codes>git submodule update --init</codes
+              ><br
             /></b>
             Если у вас не настроены SSH ключи для доступа к GitHub вам нужно
             изменить в файле .gitmodules
@@ -290,8 +366,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             </li>
             <li>
               Готовый результат появится в
-              <codes>LaunchServer/build/libs</codes>. Туда же будут
-              скопированы все необходимые библиотеки
+              <codes>LaunchServer/build/libs</codes>. Туда же будут скопированы
+              все необходимые библиотеки
             </li>
             <li>
               Запускаем лаунчсервер командой
@@ -339,8 +415,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             </li>
             <li>
               Готовый результат появится в
-              <codes>LaunchServer/build/libs</codes>. Туда же будут
-              скопированы все необходимые библиотеки
+              <codes>LaunchServer/build/libs</codes>. Туда же будут скопированы
+              все необходимые библиотеки
             </li>
           </ol>
           <p>
@@ -376,7 +452,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
         </sploiler>
       </li>
       <li>
-        <sploiler><template #header>Устанавливаем рантайм</template>
+        <sploiler
+          ><template #header>Устанавливаем рантайм</template>
           <h2>
             <a name="runtime_guide"></a>Сборка лаунчера на 5.1.0+
             <gtag type="important">Важно</gtag>
@@ -440,13 +517,16 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
         </sploiler>
       </li>
       <li>
-        <sploiler><template #header>Конфигурация лаунчсервера</template>
+        <sploiler
+          ><template #header>Конфигурация лаунчсервера</template>
           <p>
             Это конфигурация для 5.1.0. Ваш конфиг может отличаться. Все
             пояснения ниже приведены для ознакомления, не пытайтесь копировать
             конфиг или его часть себе
           </p>
-          <pcode language='json' code='
+          <pcode
+            language="json"
+            code='
 {
   "projectName": "GravitTestProject", // Название вашего проекта. Влияет на названия классов в .jar(proguard mapping), папку вашего сервера в AppData, название окна и многое другое
   "mirrors": [ //Один или несколько зеркал, с которых будут скачиваться клиенты командами downloadClient/downloadAsset
@@ -570,7 +650,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
   },
   "startScript": "./start.sh" //Скрипт запуска лаунчсервера(используется только в команде restart)
 }
-'/>
+'
+          />
         </sploiler>
       </li>
       <li v-if="version < 50200">
@@ -597,7 +678,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     <h2>
       Рекомендуемые настройки безопасности для проектов
       <gtag type="important">Важно</gtag>
-      <gtag type="info">Знать всем</gtag> <a name="security" href="#security">&#128279;</a>
+      <gtag type="info">Знать всем</gtag>
+      <a name="security" href="#security">&#128279;</a>
     </h2>
     <ul>
       <li>
@@ -609,8 +691,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
         и прочие конфигурации <b>640</b> или <b>600</b>
       </li>
       <li>
-        Рекомендуется использовать <codes>screen</codes> для
-        удобного контроля за работой лаунчсервера
+        Рекомендуется использовать <codes>screen</codes> для удобного контроля
+        за работой лаунчсервера
       </li>
       <li>
         Рекомендуется использовать systemd для автоматического рестарта,
@@ -622,12 +704,12 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
       </li>
       <li>
         Крайне аккуратно пользуйтесь параметром <b>updateExclusions</b>. Если вы
-        пишите что то вида <codes>"mods/railcraft"</codes> то это
-        означает "игнорировать всё что начинается с railcraft в папке mods, в
-        том числе railcraft_SuperMegaCheat.jar". Для игнорирования папки
-        railcraft в mods вы должны прописать "mods/railcraft/"(при этом событие
-        создания папки всё равно будет "mods/railcraft", следовательно вам нужно
-        на сервере в папке вашего клиента самим создать папку railcraft).<b
+        пишите что то вида <codes>"mods/railcraft"</codes> то это означает
+        "игнорировать всё что начинается с railcraft в папке mods, в том числе
+        railcraft_SuperMegaCheat.jar". Для игнорирования папки railcraft в mods
+        вы должны прописать "mods/railcraft/"(при этом событие создания папки
+        всё равно будет "mods/railcraft", следовательно вам нужно на сервере в
+        папке вашего клиента самим создать папку railcraft).<b
           >Единственное оправданное приминение updateExclusions - это если в
           папке находятся динамично изменяющиеся <u>неисполняемые</u> данные,
           так к примеру поступает VoxelMap</b
@@ -640,13 +722,20 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
         другой валидный сертификат) и правильно настроить iptables, закрыв
         порты, которые не должны быть открыты в сеть
       </li>
-      <li>Fabric клиент создает скрытую папку <codes>.fabric</codes>, в которой хранит JAR.
-      Рекомендуется эту папку перенести в клиент и добавить в <codes>updateVerify</codes></li>
+      <li>
+        Fabric клиент создает скрытую папку <codes>.fabric</codes>, в которой
+        хранит JAR. Рекомендуется эту папку перенести в клиент и добавить в
+        <codes>updateVerify</codes>
+      </li>
     </ul>
 
-    <h2>Команды LaunchServer <a name="commands" href="#commands">&#128279;</a></h2>
+    <h2>
+      Команды LaunchServer <a name="commands" href="#commands">&#128279;</a>
+    </h2>
     <p>Простейшие команды, которые понядобятся в первую очередь:</p>
-    <pcode language="ini" code='
+    <pcode
+      language="ini"
+      code="
     help [command name] - Вывести справку по команде или по всем командам
     stop [nothing] - Остановить LaunchServer
     build [nothing] - Собрать Launcher.jar
@@ -658,9 +747,12 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     saveprofile [name] - конвертировать профиль старой версии в актуальный формат(profileUUID, ServerProfile, опциональные моды и пр)
     debug [true/false] [true/false] - включает или отключает режим отладки в лаунчсервере
     version [nothing] - версия лаунчсервера если вдруг забыли
-    '/>
+    "
+    />
     <p>Еще команды:</p>
-    <pcode language="ini" code='
+    <pcode
+      language="ini"
+      code="
     uuidtousername (uuid) (auth_id) - получить ник пользователя по его UUID
     auth (login) (password) (auth_id) - попробывать войти с указанным логином и паролем
     usernametouuid (username) (auth_id) - получить UUID пользователя по нику
@@ -674,16 +766,22 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     gc [nothing] - запустить Java Garbare Collector
     modules [nothing] - список всех загруженных модулей
     notify [head] [message] - послать уведомление, которое увидят все у кого открыт ваш лаунчер
-    '/>
+    "
+    />
     <p>Команды DAO(работают только с настроеным Hibernate):</p>
-    <pcode language="ini" code='
+    <pcode
+      language="ini"
+      code="
     setuserpassword [username] [new password] - сменить пароль пользователю
     getuser [username] - информация о пользователе
     getallusers  - информация о всех пользователях
     register [login] [password] - зарегистрировать нового пользователя
-    '/>
+    "
+    />
     <p>Экспертные команды из стандартной поставки:</p>
-    <pcode language="ini" code='
+    <pcode
+      language="ini"
+      code="
     proguarddictregen [nothing] - перегенерировать словарь proguard
     loadmodule [jar] - загрузить модуль не из папки modules в runtime
     proguardclean [nothing] - сброс конфига proguard
@@ -691,12 +789,15 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     signjar [path to file] (path to signed file) - подписать JAR файл используя настроеный в sign сертификат(enable в true)
     signdir [path to dir] - подписать все файлы в папке используя настроеный в sign сертификат(enable в true)
     component [action] [component name] [more args] - управление компонентами
-    '/>
+    "
+    />
     <p>
       Команды ниже настолько же круты, насколько и опасны. Если вы понимаете что
       делаете, эти команды будут крайне полезны:
     </p>
-    <pcode language="ini" code='
+    <pcode
+      language="ini"
+      code="
     setsecuritymanager [allow, logger, system] - Вызов System.setSecurityManager для тестирования(UnsafeCommandsPack)
     sendauth [connectUUID] [username] [auth_id] [client type] (permissions) (client uuid) - ручная отправка события AuthEvent соеденению в обход AuthProvider(UnsafeCommandsPack)
     newdownloadasset [version] [dir] - скачать ассеты прямо с Mojang сайта, любой версии(UnsafeCommandsPack)
@@ -707,7 +808,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     scriptmappings [nothing] - посмотреть все маппинги классов лаунчсервера в javascript(ServerScriptEngine)
     synclaunchermodules [] - синхронизировать модули лаунчера
     eval [line] - выполнить JavaScript код на стороне лаунчсервера(ServerScriptEngine)
-    '/>
+    "
+    />
     <h3>Команды лаунчера. Разблокировка консоли</h3>
     <p>
       Начиная с версии 5.0.0 в лаунчере появилась консоль, которую можно открыть
@@ -716,8 +818,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
       консоль заблокирована. Для её разблокировки используется команда
       <span>unlock [key]</span><br />
       Ключ находится в RuntimeLaunchServerConfig.json, поле oemUnlockKey<br />
-      После разблокировки консоли, вы получите доступ к тестовым и утилитарным командам, недоступным
-      ранее<br />
+      После разблокировки консоли, вы получите доступ к тестовым и утилитарным
+      командам, недоступным ранее<br />
       <!-- TODO commands list -->
     </p>
 
@@ -726,14 +828,19 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
       <gtag type="medium">Средний уровень</gtag>
     </h2>
     <p>
-      Обратитесь к <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/SystemdNotifer_module">этой</a> инструкции
+      Обратитесь к
+      <a
+        href="https://github.com/GravitLauncher/LauncherModules/tree/master/SystemdNotifer_module"
+        >этой</a
+      >
+      инструкции
     </p>
   </div>
 </template>
 <script>
-import coremethods from '@/components/core-methods.js'
+import coremethods from "@/components/core-methods.js";
 export default {
   mixins: [coremethods],
-  created: function () {}
-}
+  created: function() {}
+};
 </script>
